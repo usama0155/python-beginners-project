@@ -1,138 +1,94 @@
-from fpdf import FPDF
+def main():
+    expenses =[{'name': 'Flour', 'type': 'Grocery', 'amount': 1000},
+               {'name': 'Rice', 'type': 'Grocery', 'amount':500}]
+    print("Welcome to Budget Tracker")
+    print("--------------------------")
+    choise = int(input("1. Add Expense\n2. Show Expenses\n3. Total Expense\n4. Average Expense\nEnter Choise: "))
+    if choise == 1:
+        expense_name = name()
+        expense_tpye = type()
+        expense_amount = amount()
+        results = store(expenses,expense_name, expense_tpye, expense_amount)
+        
+    elif choise == 2:
+        for i, expense in enumerate(expenses):
+            items = expense['name']
+            print(f"{i+1}) {items}")
+        print(f"Total Items: {i+1}")
 
-# Create PDF with basic ASCII only (replace all special characters)
-def clean_ascii(text):
-    replacements = {
-        "–": "-",
-        "’": "'",
-        "↔": "<->",
-        "✅": "",
-        "⚡": "",
-        "💎": ""
-    }
-    for k, v in replacements.items():
-        text = text.replace(k, v)
-    return text
+    elif choise == 3:
+        total_expense = 0
+        for expense in expenses:
+            total_expense += expense["amount"]
+        print(total_expense)
 
-pdf = FPDF()
-pdf.set_auto_page_break(auto=True, margin=15)
-pdf.add_page()
-pdf.set_font("Helvetica", 'B', 16)
+    elif choise == 4:
+        total_expense = 0
+        total_items = 0
+        for expense in expenses:
+            total_expense += expense["amount"]
+            total_items += 1
+        average = total_expense/total_items
+        print(f"Average Expense: {average}")
 
-pdf.cell(0, 10, clean_ascii("Python Basics - Projects & Exercises Roadmap"), ln=True, align='C')
-pdf.ln(5)
+    
 
-pdf.set_font("Helvetica", '', 12)
-intro_text = ("This PDF contains a structured roadmap of Python basics projects and exercises, "
-              "designed to strengthen problem-solving, logic, and programming skills. "
-              "It also includes tips for organizing a GitHub repo and README files for professional presentation.\n")
-pdf.multi_cell(0, 6, clean_ascii(intro_text))
-pdf.ln(3)
+def name():
+    while True:
+        expense_name = input("Name of Expense: ")
+        try:
+            if expense_name != "":
+                return expense_name
+        except ValueError:
+            pass
+def type():
+        while True:
+            expense_type = input("Type of Expense: ")
+            try:
+                if expense_type != "":
+                    return expense_type
+            except ValueError:
+                pass
+def amount():
+    while True:
+        expense_amount = input("Enter Amount: ")
+        try:
+            expense_amount = int(expense_amount)
+            if not expense_amount < 0:
+                return expense_amount
+        except ValueError:
+            print("Amount Must be Positive Digit")
+            pass
+def store(expense,expense_name, expense_type, expense_amount):
+    expense["name"] = expense_name
+    expense["type"] = expense_type
+    expense["amount"] = expense_amount
+    return expense
 
-topics = {
-    "1. Data Types (Numbers, Strings, Booleans)": [
-        "Budget Tracker - Track expenses by category, calculate totals and averages",
-        "Temperature Converter - Celsius <-> Fahrenheit <-> Kelvin, batch conversion",
-        "Tip Calculator - Bill split between people with tip %, handle invalid input",
-        "Password Strength Checker - Check strength, suggest improvements",
-        "Text Analyzer - Count words, sentences, average word length, vowels/consonants",
-        "Mini Number Game - Guessing game with hints and scoring"
-    ],
-    "2. Lists & Tuples": [
-        "Grocery List Manager - Add/remove/search/sort items, handle duplicates",
-        "Student Grades Analyzer - Find highest, lowest, average, and ranking",
-        "Movie Watchlist - Track movies with tuples, sort/filter by rating/genre",
-        "Top 5 Frequent Words - Count word frequency in text, ignore case/punctuation",
-        "Task Tracker / To-Do App - Store tasks with priority/status, add/update/delete",
-        "Number Stats from User Input - Sum, mean, median, max/min, range",
-        "Simple Inventory System - Track stock, low stock alerts, restock"
-    ],
-    "3. Dictionaries & Sets": [
-        "Phonebook - Store contacts {name: number}, search/update/delete",
-        "Word Counter - Count frequency of words in text using dictionary",
-        "Voting System - Record votes and calculate results",
-        "Unique Items Finder - Remove duplicates from lists",
-        "Student Attendance Tracker - Mark present/absent, calculate attendance %"
-    ],
-    "4. Conditional Logic & Loops": [
-        "FizzBuzz - Classic, customizable numbers",
-        "Multiplication Table Generator - Print tables for user input",
-        "Number Classifier - Even/odd, prime, perfect numbers",
-        "Password Attempts Simulator - Limited login tries",
-        "Pattern Printer - Stars, pyramids, numbers"
-    ],
-    "5. Functions": [
-        "Calculator - Add, subtract, multiply, divide",
-        "Unit Converter - Convert lengths, weights, currencies",
-        "Factorial Recursion - Compute factorial recursively",
-        "Fibonacci Generator - Return nth Fibonacci or list of Fibonacci numbers",
-        "Prime Checker - Function to check if number is prime"
-    ],
-    "6. File I/O": [
-        "Log Parser - Read log file, count errors/warnings",
-        "Word Counter from File - Count frequency of words in text file",
-        "To-Do App with File Storage - Save/load tasks to/from file",
-        "CSV Student Grades - Read/write CSV, calculate averages",
-        "File Backup Utility - Copy/rename files, handle missing files"
-    ],
-    "7. Exception Handling": [
-        "Safe Division - Handle divide by zero & invalid input",
-        "File Reader - Handle missing/non-text files",
-        "Input Validator - Force correct type from user",
-        "Calculator with Error Handling - Extend calculator with try/except"
-    ],
-    "8. Modules & Packages": [
-        "Math Tools Module - Factorial, prime check, Fibonacci functions",
-        "String Tools Module - Text analysis, reverse, palindrome check",
-        "Main App - Import modules, menu-driven program",
-        "Weather Fetcher (Optional) - Fetch weather data with requests"
-    ],
-    "9. Object-Oriented Programming (OOP)": [
-        "Bank Account - Deposit, withdraw, check balance",
-        "Student Class - Store info, calculate grades",
-        "Library System - Borrow/return books using objects",
-        "Employee Manager - Store employee data, promotions, salary updates"
-    ],
-    "10. Advanced Lists & Dict Manipulation": [
-        "Matrix Operations - Add, multiply, transpose matrices",
-        "Nested Dict Parser - Extract info from nested dictionaries",
-        "Shopping Cart - Products with price, quantity, total calculation",
-        "Data Filtering - Filter list of dicts by conditions"
-    ],
-    "11. Small CLI Projects / Extras": [
-        "Quiz Game - Multiple-choice quiz with score tracking",
-        "Hangman - Classic word guessing game",
-        "Simple Bank CLI - Menu-driven bank app",
-        "Contact Manager - CRUD contacts via CLI"
-    ]
-}
+def calulate_total(expenses_amount):
+    total = 0
+    for expense in expenses_amount:
+        total += expense["amount"]
+    return total
 
-pdf.add_page()
-pdf.set_font("Helvetica", 'B', 14)
-pdf.cell(0, 10, clean_ascii("GitHub Repo & README Tips"), ln=True)
-pdf.set_font("Helvetica", '', 12)
-tips_text = ("- Organize repo folder by topic (1_data_types_numbers_strings, 2_lists_tuples, etc.)\n"
-             "- Include README.md in main repo and each folder\n"
-             "- Use modular code (functions/classes) for cleaner scripts\n"
-             "- Include sample input/output as comments\n"
-             "- Commit in small, meaningful chunks\n"
-             "- Optional: Add GIFs/screenshots for LinkedIn\n"
-             "- Use type hints and docstrings for professional look")
-pdf.multi_cell(0, 6, clean_ascii(tips_text))
-pdf.ln(5)
+def calulate_average(expenses_amount):
+    total = calulate_total(expenses_amount)
+    average = total / len(expenses_amount)
+    return average
 
-# Add topics and projects
-for topic, projects in topics.items():
-    pdf.add_page()
-    pdf.set_font("Helvetica", 'B', 14)
-    pdf.multi_cell(0, 6, clean_ascii(topic))
-    pdf.ln(2)
-    pdf.set_font("Helvetica", '', 12)
-    for idx, project in enumerate(projects, 1):
-        pdf.multi_cell(0, 6, clean_ascii(f"{idx}. {project}"))
-    pdf.ln(3)
+def category_wise_total(expenses):
+    category_totals = {}
+    for expense in expenses:
+        category = expense["type"]
+        amount = expense["amount"]
+        if category in category_totals:
+            category_totals[category] += amount
+        else:
+            category_totals[category] = amount
+    return category_totals
+    
 
-# Save PDF
-output_path = "/mnt/data/Python_Basics_Projects_Roadmap_ASCII.pdf"
-pdf.output(output_path)
-output_path
+    
+
+if __name__ == "__main__":
+    main()
