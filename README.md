@@ -1,17 +1,18 @@
-# Python Beginner Projects & Exercises
+# Python Real-World Exercises
 
-This repository contains **real-world Python exercises** and small projects designed to strengthen problem-solving, logic, and coding skills.  
-Each folder is organized by topic for easier navigation.
+This repository contains **real-world Python exercises and mini-projects** designed to strengthen problem-solving, logic, and programming skills.  
+Each folder is organized by topic to make it easier to follow and learn step by step.
 
 ## Topics Covered
 
 1. **Data Types (Numbers, Strings, Booleans)**
-   - Budget Tracker
-   - Temperature Converter
-   - Tip Calculator
-   - Password Strength Checker
-   - Text Analyzer
-   - Mini Number Game
-
 2. **Lists & Tuples**
-   - Coming Next!!!
+3. **Dictionaries & Sets**
+4. **Conditional Logic & Loops**
+5. **Functions**
+6. **File I/O**
+7. **Exception Handling**
+8. **Modules & Packages**
+9. **Object-Oriented Programming**
+10. **Advanced Lists & Dictionaries**
+11. **Small CLI Projects / Mini Apps**
