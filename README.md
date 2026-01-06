@@ -19,7 +19,7 @@ The goal of this repo is to:
 ---
 
 ## 🗂 Repository Structure
-
+```
 python-learning-journey/
  ├── basic/
  │    ├── exercises/
@@ -30,7 +30,7 @@ python-learning-journey/
  │    ├── mini-projects/
  │    └── notes.md
  └── README.md
-
+```
 ---
 
 ## 🚀 Learning Roadmap
