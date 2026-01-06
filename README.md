@@ -21,16 +21,15 @@ The goal of this repo is to:
 ## 🗂 Repository Structure
 
 python-learning-journey/
-├── basic/ # Beginner-level exercises and mini-projects
-│ ├── exercises/ # Small practice scripts
-│ ├── mini-projects/ # Simple projects like countdown timers
-│ └── notes.md # Notes for concepts learned
-├── intermediate/ # Intermediate-level exercises and projects
-│ ├── exercises/
-│ ├── mini-projects/
-│ └── notes.md
-└── README.md # This file
-
+ ├── basic/
+ │    ├── exercises/
+ │    ├── mini-projects/
+ │    └── notes.md
+ ├── intermediate/
+ │    ├── exercises/
+ │    ├── mini-projects/
+ │    └── notes.md
+ └── README.md
 
 ---
 
